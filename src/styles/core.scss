@@ -6,21 +6,55 @@
   // Just remove them if they're not what you want
   html {
     box-sizing: border-box;
+    font: 50px arial,"Microsoft Yahei","Hiragino Sans GB",sans-serif;
+    font-family: "Microsoft YaHei",Arial,"Helvetica";
   }
 
-  html,
-  body {
+  html,body {
     margin: 0;
     padding: 0;
-    height: 100%;
   }
 
-  *,
-  *:before,
-  *:after {
+  body{
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    height:100%;
+    -webkit-user-select : none;
+  }
+
+  *,*:before,*:after {
     box-sizing: inherit;
   }
-  #root{
+  *{
+    font-size: 14px;
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+  }
 
+  button{
+    border:none;
+    outline:none;
+  }
+  ul,ol li{
+    list-style: none;
+  }
+  table{
+    border-collapse: collapse;
+    border-spacing: 0;
+    background-color: transparent;
+  }
+  td,th{
+    display: table-cell;
+    vertical-align: middle;
+  }
+  a {
+  	text-decoration: none;
+  	background: transparent;
+  	cursor: pointer;
+  }
+  img {
+  	vertical-align: middle;
+  	border: 0;
   }
 }

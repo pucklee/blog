@@ -1,0 +1,25 @@
+.article{
+  padding-top: 20px;
+  width: 100%;
+}
+.articleContent{
+  width: 100%;
+  padding: 20px;
+  min-height: 500px;
+  // background: #cccccc;
+}
+.comment{
+  width: 100%;
+  padding: 20px;
+}
+
+// 手机端
+@media screen and (max-width: 768px) {
+    .article{
+      padding: 0;
+    }
+    .articleContent , .comment{
+      min-height: 10px;
+      padding: 10px;
+    }
+}
