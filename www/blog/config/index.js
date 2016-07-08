@@ -58,7 +58,24 @@ const config = {
   coverage_reporters : [
     { type : 'text-summary' },
     { type : 'lcov', dir : 'coverage' }
-  ]
+  ],
+
+  // 是否使用线上的接口
+  useProductionInterface : true ,
+  // 接口地址
+  mapping : {
+    // 开发测试的接口；MOCK接口
+    development : {
+      baseurl         : 'http://127.0.0.1:8360/',
+    },
+    // 线上部署的接口
+    production : {
+      baseurl                 : 'http://127.0.0.1:8360/',
+      'article_list/index'    : 'onlineSubsection.wn', // 推荐文章列表
+      'article_list/search'   : 'category_variety_list.wn' , // 搜索文章列表
+      'article_info/article'  : 'stall_conjuncture.wn', // 获取文章内容
+    }
+  }
 }
 
 /************************************************

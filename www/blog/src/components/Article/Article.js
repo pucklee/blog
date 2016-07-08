@@ -20,20 +20,15 @@ let article = {
 class Article extends Component {
   constructor (props){
     super(props);
-    let { setWth } = this.props
-
-    // 获取屏幕宽度
-    setWth(document.body.clientWidth)
-    window.onresize = function(){
-      setWth(document.body.clientWidth)
-    }
+  }
+  componentWillMount(){
 
   }
   componentDidMount(){
     // 文章填入
     let a = document.querySelectorAll('.articleContent')[0]
     a.innerHTML = article.article_content
-
+    // 评论框
     var appid = 'cyste0NTP';
     var conf = 'prod_a1989e8d0aa59e94647de1350d6816ad';
     var width = window.innerWidth || document.documentElement.clientWidth;
@@ -45,18 +40,17 @@ class Article extends Component {
     }
   }
   render (){
-    let { wth } = this.props;
-    console.log(1)
+    console.log('render')
     return <div className={classes.article}>
       <Row>
-        <Col span={ wth < 752 ? 24 : 17}>
+        <Col md={24} lg={17}>
           <article className={classes.articleContent +' '+ 'articleContent'}>
           </article>
           <div className={classes.comment}>
             <div id="SOHUCS"></div>
           </div>
         </Col>
-        <Col span={ wth < 752 ? 0 : 7}>
+        <Col md={0} lg={7}>
           <Sidebar/>
         </Col>
       </Row>

@@ -5,6 +5,8 @@
  */
 export default {
   type: 'mysql',
+  log_sql: true,
+  log_connect: true,
   adapter: {
     mysql: {
       host: 'localhost',
@@ -12,7 +14,7 @@ export default {
       database: 'blog',
       user: 'root',
       password: 'S691018',
-      prefix: 'think_',
+      prefix: '',
       encoding: 'utf8'
     },
     mongo: {

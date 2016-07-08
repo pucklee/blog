@@ -37,7 +37,7 @@
           publish_time    :     string          // 发表时间 格式：2016年06月28日11:03:51
         }],
       }
-  // 获取文章内容 article/article
+  // 获取文章内容 article_info/article
       param :{
         article_id        :     num,            // 文章id
       }

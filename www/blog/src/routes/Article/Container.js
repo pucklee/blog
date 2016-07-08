@@ -3,7 +3,7 @@ import {
 } from 'react-redux'
 
 import {
-  setWth,
+  getData,
 } from './Article'
 
 import components from 'components/Article'
@@ -13,11 +13,11 @@ import components from 'components/Article'
     implementing our wrapper around increment; the component doesn't care   */
 
 const mapActionCreators = {
-  setWth,
+  getData,
 }
 
 const mapStateToProps = (state) => ({
-  wth: state.article.wth,
+  data: state.article.data,
 })
 
 export default connect(mapStateToProps, mapActionCreators)(components)
