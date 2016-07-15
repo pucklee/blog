@@ -44,6 +44,7 @@ const config = {
     colors : true
   },
   compiler_vendor : [
+    'babel-polyfill',
     'history',
     'react',
     'react-redux',
@@ -51,7 +52,8 @@ const config = {
     'react-router-redux',
     'redux'
   ],
-
+  // 是否使用线上的接口
+  useProductionInterface : true ,
   // ----------------------------------
   // Test Configuration
   // ----------------------------------
@@ -59,21 +61,21 @@ const config = {
     { type : 'text-summary' },
     { type : 'lcov', dir : 'coverage' }
   ],
-
-  // 是否使用线上的接口
-  useProductionInterface : true ,
   // 接口地址
   mapping : {
     // 开发测试的接口；MOCK接口
     development : {
-      baseurl         : 'http://127.0.0.1:8360/',
+      baseurl          : 'http://192.168.1.59:8360/',
+      index            : 'article_list/index', // 推荐文章列表
+      search           : 'article_list/search' , // 搜索文章列表
+      info             : 'article_info/article', // 获取文章内容
     },
     // 线上部署的接口
     production : {
-      baseurl                 : 'http://127.0.0.1:8360/',
-      'article_list/index'    : 'onlineSubsection.wn', // 推荐文章列表
-      'article_list/search'   : 'category_variety_list.wn' , // 搜索文章列表
-      'article_info/article'  : 'stall_conjuncture.wn', // 获取文章内容
+      baseurl          : 'http://192.168.1.59:8360/',
+      index            : 'article_list/index', // 推荐文章列表
+      search           : 'article_list/search' , // 搜索文章列表
+      info             : 'article_info/article', // 获取文章内容
     }
   }
 }
@@ -101,7 +103,8 @@ config.globals = {
   '__TEST__'     : config.env === 'test',
   '__DEBUG__'    : config.env === 'development' && !argv.no_debug,
   '__COVERAGE__' : !argv.watch && config.env === 'test',
-  '__BASENAME__' : JSON.stringify(process.env.BASENAME || '')
+  '__BASENAME__' : JSON.stringify(process.env.BASENAME || ''),
+  'BASEURL'      : (config.env === 'production' || config.useProductionInterface) ? JSON.stringify(config.mapping.production) : JSON.stringify(config.mapping.development)
 }
 
 // ------------------------------------

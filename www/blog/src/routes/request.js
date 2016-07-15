@@ -78,7 +78,8 @@ export default {
     	}else if(config.type == 'post'){
     		req = req.post(url);
             if(param){
-                req = req.send('param='+JSON.stringify(param.param))
+								req = req.send('param='+JSON.stringify(param))
+                // req = req.send(param.param)
             }
     	}
 
@@ -113,7 +114,7 @@ export default {
 	            config.callback({err:res.message ,errno:res.code});
 	            return;
 	        }
-	        config.callback(res.body || {});
+	        config.callback(res.data || {});
     	});
 	}
 

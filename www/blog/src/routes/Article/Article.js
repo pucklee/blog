@@ -4,14 +4,20 @@ let req = require('../request').default;
 export const SET_DATA  = 'SET_DATA'
 
 // Actions
-export function getData(value) {
+export function getData(value,cb) {
   return (dispatch, getState) => {
     req.ajax({
-      module    : MODULE_NAME,
-      interface : 'article_info/article',
-      param     : {article_id : 1},
-      callback  : function(e,res){
-        console.log(e)
+      interface : 'info',
+      type      : 'post',
+      param     : {
+        article_id : value
+      },
+      callback  : function(e){
+        dispatch({
+          type: SET_DATA,
+          data: e
+        })
+        cb(e)
       }
     })
   }

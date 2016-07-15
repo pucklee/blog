@@ -15,9 +15,17 @@ export default class extends Base {
   	let article_tag_table = this.model('article_tag')
 
     // 获取param
-    let data = this.post() || {};
+    let data = JSON.parse(this.post().param) || {};
 
-    // 查表
+    // 检查数据
+    if(!data.article_id){
+      return this.fail({
+        errno: -1,
+        errmsg: '请填写完整参数'
+      });
+    }
+
+    // 数据格式
     let articleInfo = {
       article_type: null,
       tag_name: null,
@@ -29,11 +37,12 @@ export default class extends Base {
       publish_time: null,
     }
 
-    let articleResault = await article_table.where({article_id : data.article_id}).select();
+    // 查表
+    let articleResault = await article_table.where({article_id : parseInt(data.article_id)}).select();
     if(articleResault.length <= 0){
       return this.success(articleInfo)
     }
-    let contentResault = await article_content_table.where({article_id : data.article_id}).select();
+    let contentResault = await article_content_table.where({article_id : parseInt(data.article_id)}).select();
     let tagResault = await article_tag_table.where({tag_id : articleResault[0].tag_id}).select();
 
     articleInfo.article_type = articleResault[0].article_type
@@ -43,7 +52,7 @@ export default class extends Base {
     articleInfo.tag_id = articleResault[0].tag_id
     articleInfo.tag_name = tagResault[0].tag_name
     articleInfo.article_content = contentResault[0].article_content
-
+    articleInfo.article_id = parseInt(data.article_id)
 
   	console.log('==========>',articleResault[0].tag_id)
  
