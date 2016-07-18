@@ -35,12 +35,11 @@ export default class extends Base {
 
     // 查表
     let queryTerm = function(){
+
     	if(param.search_value){
-    		console.log(param.search_value,1,param.tag_id,2)
     		console.log({'article_title|tag_name': ['like','%'+param.search_value+'%']})
     		return {'article_title|tag_name': ['like','%'+param.search_value+'%']}
     	}else if(param.tag_id){
-    		console.log(param.search_value,1,param.tag_id,2)
     		console.log({'tag_id': param.tag_id})
     		return {'a.tag_id': param.tag_id}
     	}
@@ -49,23 +48,23 @@ export default class extends Base {
     queryTerm()
     let resault = await article_table.alias('a').join({
       table: "article_tag", 
-      join: "left", //join 方式，有 left, right, inner 3 种方式
+      join: "left",
       as: "t",
-      on: ["tag_id", "tag_id"] //ON 条件
+      on: ["tag_id", "tag_id"]
     }).field(['a.article_type','a.tag_id','a.article_title','a.article_id','a.author','a.publish_time','a.show_img','t.tag_name']).where(queryTerm()).page(param.page,param.page_size).select()
     let count = await article_table.alias('a').join({
       table: "article_tag", 
-      join: "left", //join 方式，有 left, right, inner 3 种方式
+      join: "left",
       as: "t",
-      on: ["tag_id", "tag_id"] //ON 条件
+      on: ["tag_id", "tag_id"]
     }).field(['a.article_type','a.tag_id','a.article_title','a.article_id','a.author','a.publish_time','a.show_img','t.tag_name']).where(queryTerm()).page(param.page,param.page_size).count('article_title')
-
+    console.log(resault)
     res.list = resault
     res.count = count
-	return this.fail({
-	  errno: -1,
-	  errmsg: '请填写完整参数'
-  	});
+	// return this.fail({
+	//   errno: -1,
+	//   errmsg: '请填写完整参数'
+ //  	});
 
 
 

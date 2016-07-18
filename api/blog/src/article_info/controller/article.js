@@ -43,7 +43,7 @@ export default class extends Base {
       return this.success(articleInfo)
     }
     let contentResault = await article_content_table.where({article_id : parseInt(data.article_id)}).select();
-    let tagResault = await article_tag_table.where({tag_id : articleResault[0].tag_id}).select();
+    let tagResault = await article_tag_table.where({tag_id : article.Resault[0].tag_id}).select();
 
     articleInfo.article_type = articleResault[0].article_type
     articleInfo.article_title = articleResault[0].article_title
